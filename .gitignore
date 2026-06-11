@@ -1,0 +1,10 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Paquetes de despliegue
+*.zip
+
+# Dependencias (no se usan en producción; el sitio es estático)
+node_modules/

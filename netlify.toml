@@ -1,0 +1,6 @@
+# Configuración de despliegue en Netlify.
+# Sitio estático (HTML/CSS/JS) servido directamente desde la raíz del repo.
+# No requiere paso de build.
+[build]
+  publish = "."
+  command = ""
