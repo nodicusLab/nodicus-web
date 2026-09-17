@@ -228,10 +228,18 @@ main { position: relative; z-index: 1; }
 .site-header {
   position: fixed; inset: 0 0 auto 0; z-index: 90;
   padding-block: 1.05rem;
-  background: color-mix(in srgb, var(--bg) 82%, transparent);
-  backdrop-filter: blur(8px) saturate(1.1);
   border-bottom: 1px solid transparent;
-  transition: border-color .35s ease, padding .35s ease, background-color .35s ease;
+  transition: border-color .35s ease, padding .35s ease;
+}
+/* Fondo translúcido en un pseudo-elemento: un backdrop-filter en el propio header
+   lo convertiría en el bloque contenedor de sus hijos position:fixed, y el menú
+   móvil (.nav) quedaría recortado al alto del header en lugar de ocupar la pantalla. */
+.site-header::before {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  -webkit-backdrop-filter: blur(8px) saturate(1.1);
+  backdrop-filter: blur(8px) saturate(1.1);
+  transition: background-color .35s ease;
 }
 .site-header.scrolled { border-bottom-color: var(--line); padding-block: 0.7rem; }
 .header-inner { display: flex; align-items: center; justify-content: space-between; gap: var(--sp-3); }
@@ -592,8 +600,8 @@ main { position: relative; z-index: 1; }
 }
 
 @media (max-width: 620px) {
-  .nav { position: fixed; inset: 0 0 0 auto; width: min(82vw, 320px); flex-direction: column; align-items: flex-start; justify-content: flex-start; gap: var(--sp-3); background: var(--paper); padding: 5.5rem var(--gutter) var(--sp-4); box-shadow: var(--shadow-lg); transform: translateX(100%); transition: transform .4s cubic-bezier(.3,.8,.3,1); border-left: 1px solid var(--line); }
-  .nav.open { transform: none; }
+  .nav { position: fixed; inset: 0 0 0 auto; width: min(82vw, 320px); flex-direction: column; align-items: flex-start; justify-content: flex-start; gap: var(--sp-3); background: var(--paper); padding: 5.5rem var(--gutter) var(--sp-4); box-shadow: var(--shadow-lg); transform: translateX(100%); visibility: hidden; transition: transform .4s cubic-bezier(.3,.8,.3,1), visibility 0s linear .4s; border-left: 1px solid var(--line); }
+  .nav.open { transform: none; visibility: visible; transition: transform .4s cubic-bezier(.3,.8,.3,1); }
   .nav a:not(.btn) { font-size: var(--step-1); }
   .nav .btn { --by: 0.8rem; --bx: 1.4rem; font-size: var(--step-0); width: 100%; justify-content: center; }
   .burger { display: inline-flex; z-index: 95; }
