@@ -133,7 +133,8 @@
       }
 
       emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, form).then(function () {
-        // Éxito
+        // Éxito. Se registra como conversión en Umami (si el script cargó).
+        if (window.umami && typeof umami.track === 'function') umami.track('contacto-enviado');
         btn.innerHTML = '¡Enviado! ✓';
         feedback.classList.remove('is-error');
         feedback.textContent = 'Gracias por escribirnos. Te responderemos muy pronto.';
