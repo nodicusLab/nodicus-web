@@ -37,6 +37,7 @@ jobs:
           # LinkedIn responde 999 a los bots; fonts.g* son preconnect, no páginas.
           args: >-
             --no-progress
+            --root-dir "${{ github.workspace }}/_site"
             --exclude "linkedin\.com"
             --exclude "fonts\.googleapis\.com$"
             --exclude "fonts\.gstatic\.com"
