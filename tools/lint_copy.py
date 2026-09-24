@@ -16,6 +16,7 @@ eso hay tres niveles:
     el umbral de densidad (DENSITY_LIMIT apariciones).
 
 Uso:
+    npm run build                        # el linter lee el HTML generado en _site/
     python tools/lint_copy.py            # informe, nunca falla
     python tools/lint_copy.py --strict   # falla si hay algo PROHIBIDO
     python tools/lint_copy.py archivo.html otro.html
@@ -34,7 +35,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "tools"))
-from build_sitemap import find_pages  # noqa: E402
+from build_sitemap import SITE_DIR, find_pages  # noqa: E402
 
 FLAGS = re.IGNORECASE | re.UNICODE
 
@@ -156,7 +157,7 @@ def main():
     parser.add_argument("--strict", action="store_true", help="falla si hay algo PROHIBIDO")
     args = parser.parse_args()
 
-    files = [f.resolve() for f in args.files] or [ROOT / rel for rel in find_pages()]
+    files = [f.resolve() for f in args.files] or [SITE_DIR / rel for rel in find_pages()]
     prohibited = 0
     for path in files:
         findings = lint(path)

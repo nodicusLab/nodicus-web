@@ -1,0 +1,142 @@
+{#- Plantilla común a todas las páginas: <head>, cabecera, pie y scripts.
+    Variables de cada página (front matter): title, description y, opcionales,
+    ogTitle, ogDescription, twitterDescription, ogType, schemaExtra. -#}
+{%- set isHome = page.url == "/" -%}
+{%- set homeHref = "" if isHome else "/" -%}
+{%- set canonical = site.url + page.url -%}
+<!DOCTYPE html>
+<html lang="es" data-theme="caracter" data-coral="pleno" style="--scale:0.92" class="no-js">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="{{ description }}">
+
+  <!-- SEO & Social Media -->
+  <link rel="canonical" href="{{ canonical }}" />
+  <meta property="og:title" content="{{ ogTitle or title }}" />
+  <meta property="og:description" content="{{ ogDescription or description }}" />
+  <meta property="og:image" content="{{ site.ogImage }}" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="{{ site.ogImageAlt }}" />
+  <meta property="og:url" content="{{ canonical }}" />
+  <meta property="og:type" content="{{ ogType or 'website' }}" />
+  <meta property="og:site_name" content="{{ site.name }}" />
+  <meta property="og:locale" content="es_ES" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="{{ ogTitle or title }}" />
+  <meta name="twitter:description" content="{{ twitterDescription or ogDescription or description }}" />
+  <meta name="twitter:image" content="{{ site.ogImage }}" />
+
+  <title>{{ title }}</title>
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/x-icon" href="/favicon/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96.png">
+  <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="/styles.css">
+
+  <!-- EmailJS -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script type="text/javascript">
+    (function () {
+      // Inicializa EmailJS con la Public Key de nódicus
+      emailjs.init("djSnpxKmk53yDPEEq");
+    })();
+  </script>
+
+  <!-- Analítica (Umami Cloud): sin cookies, no requiere banner de consentimiento -->
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="25041410-8dee-425e-b5a8-aba606705f19"></script>
+
+  <script>document.documentElement.classList.remove('no-js'); document.documentElement.classList.add('js');</script>
+
+  <!-- Datos estructurados (schema.org) -->
+  <script type="application/ld+json">
+  {{ { "@context": "https://schema.org", "@graph": schemaOrg.base.concat(schemaExtra or []) } | dump(2) | safe }}
+  </script>
+</head>
+
+<body data-texture="off">
+
+  <!-- Filtro SVG: desaturado tipo GIMP (promedio) — gris más claro y equilibrado que el grayscale CSS por luminancia -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <filter id="desat-avg" color-interpolation-filters="sRGB">
+        <feColorMatrix type="matrix" values="
+          0.3333 0.3333 0.3333 0 0
+          0.3333 0.3333 0.3333 0 0
+          0.3333 0.3333 0.3333 0 0
+          0      0      0      1 0"/>
+      </filter>
+    </defs>
+  </svg>
+
+  <!-- ====================== HEADER ====================== -->
+  <header class="site-header" id="header">
+    <div class="shell header-inner">
+      <a href="{{ '#top' if isHome else '/' }}" class="brand" aria-label="nódicus — inicio">n<span class="dot">ó</span>dicus</a>
+      <nav class="nav" id="nav" aria-label="Principal">
+        <a href="{{ homeHref }}#filosofia">Filosofía</a>
+        <a href="{{ homeHref }}#servicios">Servicios</a>
+        <a href="{{ homeHref }}#proyectos">Proyectos</a>
+        <a href="{{ homeHref }}#nosotros">Nosotros</a>
+        <a href="{{ homeHref }}#contacto" class="btn btn--primary">Hablemos <span class="arr" aria-hidden="true">→</span></a>
+      </nav>
+      <button type="button" class="burger" id="burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+          <line x1="3" y1="7" x2="21" y2="7"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="17" x2="21" y2="17"></line>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="top">
+{{ content | safe }}
+  </main>
+
+  <!-- ====================== FOOTER ====================== -->
+  <footer class="site-footer">
+    <div class="shell">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <span class="brand">n<span class="dot">ó</span>dicus</span>
+          <p>Soluciones de datos, IA y automatización a medida. IA para las empresas, empresas para las personas.</p>
+        </div>
+        <div class="footer-cols">
+          <div class="footer-col">
+            <h4>Navegar</h4>
+            <a href="{{ homeHref }}#filosofia">Filosofía</a>
+            <a href="{{ homeHref }}#servicios">Servicios</a>
+            <a href="{{ homeHref }}#proyectos">Proyectos</a>
+            <a href="{{ homeHref }}#nosotros">Nosotros</a>
+          </div>
+          <div class="footer-col">
+            <h4>Contacto</h4>
+            <a href="mailto:contacto@nodicus.com" data-umami-event="email-click">contacto@nodicus.com</a>
+            <a href="https://www.linkedin.com/company/nodicus" target="_blank" rel="noopener" data-umami-event="linkedin-click">LinkedIn</a>
+            <span>Valencia, España</span>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Nódicus. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/site.js"></script>
+</body>
+
+</html>

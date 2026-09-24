@@ -1,164 +1,11 @@
-<!DOCTYPE html>
-<html lang="es" data-theme="caracter" data-coral="pleno" style="--scale:0.92" class="no-js">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description"
-    content="Nódicus — Soluciones de datos, IA y automatización a medida para empresas. IA para las empresas, empresas para las personas. Desde Valencia.">
-
-  <!-- SEO & Social Media -->
-  <link rel="canonical" href="https://nodicus.com/" />
-  <meta property="og:title" content="Nódicus | IA y Automatización a Medida" />
-  <meta property="og:description"
-    content="Soluciones de datos, IA y automatización a medida para empresas. IA para las empresas, empresas para las personas." />
-  <meta property="og:image" content="https://nodicus.com/images/og-image.jpg" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="nódicus. IA para las empresas, empresas para las personas" />
-  <meta property="og:url" content="https://nodicus.com/" />
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="nódicus" />
-  <meta property="og:locale" content="es_ES" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Nódicus | IA y Automatización a Medida" />
-  <meta name="twitter:description" content="Soluciones de datos, IA y automatización a medida para empresas." />
-  <meta name="twitter:image" content="https://nodicus.com/images/og-image.jpg" />
-
-  <title>nódicus | IA y automatización a medida</title>
-
-  <!-- Favicons -->
-  <link rel="icon" type="image/x-icon" href="favicon/favicon.ico">
-  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png">
-  <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg">
-  <link rel="manifest" href="favicon/site.webmanifest">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap"
-    rel="stylesheet">
-
-  <link rel="stylesheet" href="styles.css">
-
-  <!-- EmailJS -->
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-  <script type="text/javascript">
-    (function () {
-      // Inicializa EmailJS con la Public Key de nódicus
-      emailjs.init("djSnpxKmk53yDPEEq");
-    })();
-  </script>
-
-  <!-- Analítica (Umami Cloud): sin cookies, no requiere banner de consentimiento -->
-  <script defer src="https://cloud.umami.is/script.js" data-website-id="25041410-8dee-425e-b5a8-aba606705f19"></script>
-
-  <script>document.documentElement.classList.remove('no-js'); document.documentElement.classList.add('js');</script>
-
-  <!-- Datos estructurados (schema.org): quién es nódicus y quiénes lo forman -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "ProfessionalService",
-        "@id": "https://nodicus.com/#organization",
-        "name": "nódicus",
-        "alternateName": "Nodicus",
-        "url": "https://nodicus.com/",
-        "logo": "https://nodicus.com/images/logo.png",
-        "image": "https://nodicus.com/images/og-image.jpg",
-        "description": "Soluciones de datos, IA y automatización a medida para empresas.",
-        "slogan": "IA para las empresas, empresas para las personas",
-        "email": "contacto@nodicus.com",
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "Valencia",
-          "addressRegion": "Comunidad Valenciana",
-          "addressCountry": "ES"
-        },
-        "areaServed": { "@type": "Country", "name": "España" },
-        "knowsAbout": [
-          "Integración de datos",
-          "Cuadros de mando",
-          "Inteligencia artificial",
-          "Aprendizaje automático",
-          "Visión por computador",
-          "Automatización de procesos"
-        ],
-        "founder": [
-          { "@id": "https://nodicus.com/#javier-martinez-llinares" },
-          { "@id": "https://nodicus.com/#pedro-de-luna-huerta" }
-        ],
-        "sameAs": ["https://www.linkedin.com/company/nodicus"]
-      },
-      {
-        "@type": "Person",
-        "@id": "https://nodicus.com/#javier-martinez-llinares",
-        "name": "Javier Martínez Llinares",
-        "jobTitle": "Cofundador",
-        "worksFor": { "@id": "https://nodicus.com/#organization" },
-        "sameAs": ["https://www.linkedin.com/in/javier-martinez-llinares"]
-      },
-      {
-        "@type": "Person",
-        "@id": "https://nodicus.com/#pedro-de-luna-huerta",
-        "name": "Pedro de Luna Huerta",
-        "jobTitle": "Cofundador",
-        "worksFor": { "@id": "https://nodicus.com/#organization" },
-        "sameAs": ["https://www.linkedin.com/in/pedro-de-luna-huerta-1a161b333"]
-      },
-      {
-        "@type": "WebSite",
-        "@id": "https://nodicus.com/#website",
-        "url": "https://nodicus.com/",
-        "name": "nódicus",
-        "inLanguage": "es",
-        "publisher": { "@id": "https://nodicus.com/#organization" }
-      }
-    ]
-  }
-  </script>
-</head>
-
-<body data-texture="off">
-
-  <!-- Filtro SVG: desaturado tipo GIMP (promedio) — gris más claro y equilibrado que el grayscale CSS por luminancia -->
-  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-    <defs>
-      <filter id="desat-avg" color-interpolation-filters="sRGB">
-        <feColorMatrix type="matrix" values="
-          0.3333 0.3333 0.3333 0 0
-          0.3333 0.3333 0.3333 0 0
-          0.3333 0.3333 0.3333 0 0
-          0      0      0      1 0"/>
-      </filter>
-    </defs>
-  </svg>
-
-  <!-- ====================== HEADER ====================== -->
-  <header class="site-header" id="header">
-    <div class="shell header-inner">
-      <a href="#top" class="brand" aria-label="nódicus — inicio">n<span class="dot">ó</span>dicus</a>
-      <nav class="nav" id="nav" aria-label="Principal">
-        <a href="#filosofia">Filosofía</a>
-        <a href="#servicios">Servicios</a>
-        <a href="#proyectos">Proyectos</a>
-        <a href="#nosotros">Nosotros</a>
-        <a href="#contacto" class="btn btn--primary">Hablemos <span class="arr" aria-hidden="true">→</span></a>
-      </nav>
-      <button type="button" class="burger" id="burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
-          <line x1="3" y1="7" x2="21" y2="7"></line>
-          <line x1="3" y1="12" x2="21" y2="12"></line>
-          <line x1="3" y1="17" x2="21" y2="17"></line>
-        </svg>
-      </button>
-    </div>
-  </header>
-
-  <main id="top">
+---
+layout: base.njk
+title: "nódicus | IA y automatización a medida"
+description: "Nódicus — Soluciones de datos, IA y automatización a medida para empresas. IA para las empresas, empresas para las personas. Desde Valencia."
+ogTitle: "Nódicus | IA y Automatización a Medida"
+ogDescription: "Soluciones de datos, IA y automatización a medida para empresas. IA para las empresas, empresas para las personas."
+twitterDescription: "Soluciones de datos, IA y automatización a medida para empresas."
+---
 
     <!-- ====================== HERO ====================== -->
     <section class="hero section">
@@ -297,7 +144,7 @@
               </dl>
             </div>
             <div class="case-illu">
-              <img src="illustrations/business-deal.svg" alt="Ilustración del caso de informes de ventas" loading="lazy">
+              <img src="/illustrations/business-deal.svg" alt="Ilustración del caso de informes de ventas" loading="lazy">
             </div>
           </article>
 
@@ -312,37 +159,35 @@
               </dl>
             </div>
             <div class="case-illu">
-              <img src="illustrations/car-repair.svg" alt="Ilustración del caso de clasificación de averías" loading="lazy">
+              <img src="/illustrations/car-repair.svg" alt="Ilustración del caso de clasificación de averías" loading="lazy">
             </div>
           </article>
         </div>
 
-        <!--
-          Sección "Confían en nosotros" — OCULTA temporalmente (a petición del cliente).
-          Para volver a mostrarla en el futuro, basta con descomentar el bloque de abajo.
-          NOTA: los logos de Inserquim y Grupo Bertolín se han retirado de forma permanente.
-        -->
-        <!--
+        {#-
+          Sección "Confían en nosotros": OCULTA (a petición del cliente). Es un comentario
+          de plantilla, así que no llega al HTML publicado. Para mostrarla, sacar el bloque
+          de este comentario y volver a copiar logos/ en eleventy.config.js.
         <div class="trust-inline reveal">
           <span class="eyebrow"><span class="tick"></span> Confían en nosotros</span>
         </div>
         <div class="marquee reveal" data-d="1" aria-label="Empresas que confían en nosotros">
           <div class="marquee-track">
-            <img class="m-logo" src="logos/grant-thornton.png" alt="Grant Thornton">
-            <img class="m-logo" src="logos/pksiam.png" alt="PKSIAM">
-            <img class="m-logo" src="logos/xertruck.webp" alt="Xertruck">
-            <img class="m-logo" src="logos/pascual-gonzalo.png" alt="Pascual Gonzalo">
-            <img class="m-logo" src="logos/sanustech.png" alt="Sanustech">
-            <img class="m-logo" src="logos/fongascal.png" alt="Fongascal">
-            <img class="m-logo" src="logos/grant-thornton.png" alt="" aria-hidden="true">
-            <img class="m-logo" src="logos/pksiam.png" alt="" aria-hidden="true">
-            <img class="m-logo" src="logos/xertruck.webp" alt="" aria-hidden="true">
-            <img class="m-logo" src="logos/pascual-gonzalo.png" alt="" aria-hidden="true">
-            <img class="m-logo" src="logos/sanustech.png" alt="" aria-hidden="true">
-            <img class="m-logo" src="logos/fongascal.png" alt="" aria-hidden="true">
+            <img class="m-logo" src="/logos/grant-thornton.png" alt="Grant Thornton">
+            <img class="m-logo" src="/logos/pksiam.png" alt="PKSIAM">
+            <img class="m-logo" src="/logos/xertruck.webp" alt="Xertruck">
+            <img class="m-logo" src="/logos/pascual-gonzalo.png" alt="Pascual Gonzalo">
+            <img class="m-logo" src="/logos/sanustech.png" alt="Sanustech">
+            <img class="m-logo" src="/logos/fongascal.png" alt="Fongascal">
+            <img class="m-logo" src="/logos/grant-thornton.png" alt="" aria-hidden="true">
+            <img class="m-logo" src="/logos/pksiam.png" alt="" aria-hidden="true">
+            <img class="m-logo" src="/logos/xertruck.webp" alt="" aria-hidden="true">
+            <img class="m-logo" src="/logos/pascual-gonzalo.png" alt="" aria-hidden="true">
+            <img class="m-logo" src="/logos/sanustech.png" alt="" aria-hidden="true">
+            <img class="m-logo" src="/logos/fongascal.png" alt="" aria-hidden="true">
           </div>
         </div>
-        -->
+        -#}
       </div>
     </section>
 
@@ -358,7 +203,7 @@
             <p>Te acompañamos en persona durante todo el proceso, con un trato directo y cercano. Construimos lo que tu empresa realmente necesita y nos implicamos en el resultado hasta conseguir la máxima calidad.</p>
           </div>
           <figure class="about-media reveal" data-d="1">
-            <img src="images/team.jpeg" alt="El equipo de nódicus" loading="lazy">
+            <img src="/images/team.jpeg" alt="El equipo de nódicus" loading="lazy">
             <figcaption>El equipo · Valencia, 2026</figcaption>
           </figure>
         </div>
@@ -408,39 +253,3 @@
         </div>
       </div>
     </section>
-  </main>
-
-  <!-- ====================== FOOTER ====================== -->
-  <footer class="site-footer">
-    <div class="shell">
-      <div class="footer-top">
-        <div class="footer-brand">
-          <span class="brand">n<span class="dot">ó</span>dicus</span>
-          <p>Soluciones de datos, IA y automatización a medida. IA para las empresas, empresas para las personas.</p>
-        </div>
-        <div class="footer-cols">
-          <div class="footer-col">
-            <h4>Navegar</h4>
-            <a href="#filosofia">Filosofía</a>
-            <a href="#servicios">Servicios</a>
-            <a href="#proyectos">Proyectos</a>
-            <a href="#nosotros">Nosotros</a>
-          </div>
-          <div class="footer-col">
-            <h4>Contacto</h4>
-            <a href="mailto:contacto@nodicus.com" data-umami-event="email-click">contacto@nodicus.com</a>
-            <a href="https://www.linkedin.com/company/nodicus" target="_blank" rel="noopener" data-umami-event="linkedin-click">LinkedIn</a>
-            <span>Valencia, España</span>
-          </div>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>© 2026 Nódicus. Todos los derechos reservados.</p>
-      </div>
-    </div>
-  </footer>
-
-  <script src="site.js"></script>
-</body>
-
-</html>

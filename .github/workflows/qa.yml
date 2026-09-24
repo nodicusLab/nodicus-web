@@ -1,6 +1,6 @@
-# Calidad técnica y de redacción del sitio.
-# Corre en cada push y pull request, y una vez por semana para detectar
-# enlaces externos que se hayan roto aunque no cambie nada en el repo.
+# Calidad técnica y de redacción del sitio (sobre el HTML que genera Eleventy).
+# Corre en cada push a main y en cada pull request, y una vez por semana para
+# detectar enlaces externos que se hayan roto aunque no cambie nada en el repo.
 name: QA
 
 on:
@@ -12,33 +12,27 @@ on:
   workflow_dispatch:
 
 jobs:
-  seo:
-    name: Comprobaciones SEO
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v5
-      - uses: actions/setup-python@v6
-        with:
-          python-version: "3.12"
-      - name: Títulos, metas, canonical, JSON-LD, enlaces locales, sitemap
-        run: python tools/qa_check.py
-
-  html:
-    name: Validación HTML
+  qa:
+    name: Build y comprobaciones
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-node@v5
         with:
           node-version: "22"
-      - run: npx --yes html-validate@9 .
-
-  links:
-    name: Enlaces externos
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v5
-      - uses: lycheeverse/lychee-action@v2
+          cache: npm
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - run: npm ci
+      - name: Build (Eleventy)
+        run: npm run build
+      - name: Comprobaciones SEO (títulos, metas, canonical, JSON-LD, enlaces, sitemap)
+        run: python tools/qa_check.py
+      - name: Validación HTML
+        run: npx --yes html-validate@9 _site
+      - name: Enlaces externos
+        uses: lycheeverse/lychee-action@v2
         with:
           # LinkedIn responde 999 a los bots; fonts.g* son preconnect, no páginas.
           args: >-
@@ -46,20 +40,10 @@ jobs:
             --exclude "linkedin\.com"
             --exclude "fonts\.googleapis\.com$"
             --exclude "fonts\.gstatic\.com"
-            --exclude-path tools
-            './**/*.html'
+            '_site/**/*.html'
           fail: true
-
-  copy:
-    name: Redacción anti-IA (informativo)
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v5
-      - uses: actions/setup-python@v6
-        with:
-          python-version: "3.12"
       # De momento solo informa. Cuando se reescriban los textos se pasará a --strict.
-      - name: Informe
+      - name: Redacción anti-IA (informativo)
         run: |
           python tools/lint_copy.py | tee copy-report.txt
           {

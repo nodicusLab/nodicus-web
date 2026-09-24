@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Comprobaciones técnicas de SEO sobre el HTML del sitio. Se ejecuta en CI en
-cada push y pull request, y también a mano:
+Comprobaciones técnicas de SEO sobre el HTML generado (_site/). Se ejecuta en
+CI en cada push y pull request, y también a mano:
 
-    python tools/qa_check.py
+    npm run build && python tools/qa_check.py
 
 Por cada página publicada comprueba:
   - <title> y meta description: presentes, con longitud razonable y sin
@@ -32,7 +32,7 @@ from urllib.parse import urlparse
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "tools"))
-from build_sitemap import SITE, find_pages, is_stale as sitemap_is_stale  # noqa: E402
+from build_sitemap import SITE, SITE_DIR, find_pages, is_stale as sitemap_is_stale  # noqa: E402
 
 BROKEN_TEXT = re.compile(r"\bundefined\b|\bNaN\b|\[object Object\]|\{\{|\}\}|lorem ipsum", re.IGNORECASE)
 
@@ -83,7 +83,7 @@ class PageParser(HTMLParser):
 
 
 def check_page(rel, errors, warnings, seen):
-    html = (ROOT / rel).read_text(encoding="utf-8")
+    html = (SITE_DIR / rel).read_text(encoding="utf-8")
     page = PageParser()
     page.feed(html)
     where = rel.as_posix()
@@ -127,7 +127,7 @@ def check_page(rel, errors, warnings, seen):
     if not og_image:
         warn("falta og:image")
     elif og_image.startswith(SITE):
-        local = ROOT / urlparse(og_image).path.lstrip("/")
+        local = SITE_DIR / urlparse(og_image).path.lstrip("/")
         if not local.exists():
             err(f"og:image apunta a un archivo que no existe: {og_image}")
 
@@ -152,7 +152,7 @@ def check_page(rel, errors, warnings, seen):
             if anchor and anchor not in page.ids:
                 err(f"ancla rota: {link}")
             continue
-        target = (ROOT / rel).parent / parsed.path if not parsed.path.startswith("/") else ROOT / parsed.path.lstrip("/")
+        target = (SITE_DIR / rel).parent / parsed.path if not parsed.path.startswith("/") else SITE_DIR / parsed.path.lstrip("/")
         if parsed.path and not (target.exists() or target.with_suffix(".html").exists() or (target / "index.html").exists()):
             err(f"recurso o enlace local inexistente: {link}")
 
@@ -173,7 +173,7 @@ def main():
         if len(where) > 1:
             errors.append(f"{kind} duplicado en {', '.join(where)}: {value!r}")
 
-    robots = (ROOT / "robots.txt").read_text(encoding="utf-8") if (ROOT / "robots.txt").exists() else ""
+    robots = (SITE_DIR / "robots.txt").read_text(encoding="utf-8") if (SITE_DIR / "robots.txt").exists() else ""
     if f"Sitemap: {SITE}/sitemap.xml" not in robots:
         errors.append("robots.txt no declara el sitemap")
 

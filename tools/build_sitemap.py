@@ -12,6 +12,8 @@ saberlo se guarda un hash por página en `tools/sitemap-state.json`:
 
 `changefreq` y `priority` no se incluyen: Google los ignora.
 
+Trabaja sobre el HTML generado en _site/ (npm run build).
+
 Uso:
     python tools/build_sitemap.py           # regenera sitemap.xml y el estado
     python tools/build_sitemap.py --check   # sale con error si están desfasados (CI)
@@ -28,24 +30,20 @@ from pathlib import Path
 from xml.sax.saxutils import escape
 
 ROOT = Path(__file__).resolve().parent.parent
+SITE_DIR = ROOT / "_site"  # HTML generado por Eleventy (npm run build)
 SITE = "https://nodicus.com"
 SITEMAP = ROOT / "sitemap.xml"
 STATE = ROOT / "tools" / "sitemap-state.json"
 
-# Carpetas que no se publican como páginas (plantillas, herramientas...)
-EXCLUDED_DIRS = {"tools", "node_modules", ".git", ".github", "favicon", "_site"}
 # Páginas que existen pero no deben indexarse
 EXCLUDED_PAGES = {"404.html"}
 
 
 def find_pages():
-    pages = []
-    for path in sorted(ROOT.rglob("*.html")):
-        rel = path.relative_to(ROOT)
-        if rel.parts[0] in EXCLUDED_DIRS or rel.name in EXCLUDED_PAGES:
-            continue
-        pages.append(rel)
-    return pages
+    """Páginas del sitio generado, relativas a _site/. Hay que construir antes."""
+    if not SITE_DIR.exists():
+        sys.exit("No existe _site/: ejecuta `npm run build` primero.")
+    return [p.relative_to(SITE_DIR) for p in sorted(SITE_DIR.rglob("*.html")) if p.name not in EXCLUDED_PAGES]
 
 
 def url_for(rel):
@@ -69,7 +67,7 @@ def build(today):
     new_state = {}
     for rel in find_pages():
         key = rel.as_posix()
-        digest = page_hash(ROOT / rel)
+        digest = page_hash(SITE_DIR / rel)
         previous = old_state.get(key)
         if previous and previous["hash"] == digest:
             new_state[key] = previous
