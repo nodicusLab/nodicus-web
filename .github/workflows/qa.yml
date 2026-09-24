@@ -5,6 +5,7 @@ name: QA
 
 on:
   push:
+    branches: [main]
   pull_request:
   schedule:
     - cron: "0 6 * * 1" # lunes, 06:00 UTC
@@ -15,8 +16,8 @@ jobs:
     name: Comprobaciones SEO
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
       - name: Títulos, metas, canonical, JSON-LD, enlaces locales, sitemap
@@ -26,8 +27,8 @@ jobs:
     name: Validación HTML
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
         with:
           node-version: "22"
       - run: npx --yes html-validate@9 .
@@ -36,7 +37,7 @@ jobs:
     name: Enlaces externos
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: lycheeverse/lychee-action@v2
         with:
           # LinkedIn responde 999 a los bots; fonts.g* son preconnect, no páginas.
@@ -53,8 +54,8 @@ jobs:
     name: Redacción anti-IA (informativo)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
       # De momento solo informa. Cuando se reescriban los textos se pasará a --strict.
