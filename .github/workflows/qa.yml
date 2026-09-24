@@ -1,0 +1,69 @@
+# Calidad técnica y de redacción del sitio.
+# Corre en cada push y pull request, y una vez por semana para detectar
+# enlaces externos que se hayan roto aunque no cambie nada en el repo.
+name: QA
+
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: "0 6 * * 1" # lunes, 06:00 UTC
+  workflow_dispatch:
+
+jobs:
+  seo:
+    name: Comprobaciones SEO
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Títulos, metas, canonical, JSON-LD, enlaces locales, sitemap
+        run: python tools/qa_check.py
+
+  html:
+    name: Validación HTML
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: npx --yes html-validate@9 .
+
+  links:
+    name: Enlaces externos
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: lycheeverse/lychee-action@v2
+        with:
+          # LinkedIn responde 999 a los bots; fonts.g* son preconnect, no páginas.
+          args: >-
+            --no-progress
+            --exclude "linkedin\.com"
+            --exclude "fonts\.googleapis\.com$"
+            --exclude "fonts\.gstatic\.com"
+            --exclude-path tools
+            './**/*.html'
+          fail: true
+
+  copy:
+    name: Redacción anti-IA (informativo)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      # De momento solo informa. Cuando se reescriban los textos se pasará a --strict.
+      - name: Informe
+        run: |
+          python tools/lint_copy.py | tee copy-report.txt
+          {
+            echo '### Redacción anti-IA'
+            echo '```'
+            cat copy-report.txt
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"

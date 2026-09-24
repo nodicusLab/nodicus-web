@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<!--
+  Plantilla de la imagen para redes sociales (og:image, 1200x630).
+  La renderiza tools/make_og_image.py con Chrome headless.
+  Usa los mismos tokens, fuentes y motivos que la web (tema "carácter",
+  coral pleno): marfil, pizarra, coral, Lora + Inter, trazo "tick" y la
+  marca de agua "nód".
+-->
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>og-image</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Lora:wght@600&display=block" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FFFCE8;
+    --slate: #456990;
+    --slate-deep: #2F4B6B;
+    --coral: #EF767A;
+    --coral-deep: #D8595E;
+    --ink: #23262B;
+    --line: rgba(47, 75, 107, 0.16);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1200px; height: 630px; overflow: hidden; }
+  body {
+    background: var(--cream);
+    font-family: 'Inter', system-ui, sans-serif;
+    position: relative;
+    padding: 72px 84px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .brand {
+    font-family: 'Lora', Georgia, serif;
+    font-weight: 600;
+    font-size: 58px;
+    color: var(--slate-deep);
+    letter-spacing: -0.01em;
+    line-height: 1;
+  }
+  .brand .dot { color: var(--coral); }
+  .eyebrow {
+    font-size: 21px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--slate);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+  .tick {
+    display: inline-block;
+    width: 5px;
+    height: 24px;
+    background: var(--coral);
+    transform: skewX(-22deg);
+    border-radius: 2px;
+  }
+  h1 {
+    font-family: 'Lora', Georgia, serif;
+    font-weight: 600;
+    font-size: 70px;
+    line-height: 1.08;
+    letter-spacing: -0.018em;
+    color: var(--ink);
+    max-width: 900px;
+  }
+  h1 .spark { color: var(--coral-deep); }
+  .foot {
+    font-size: 22px;
+    color: var(--slate);
+    border-top: 1px solid var(--line);
+    padding-top: 22px;
+  }
+  .watermark {
+    position: absolute;
+    right: -10px;
+    bottom: -90px;
+    font-family: 'Lora', Georgia, serif;
+    font-weight: 600;
+    font-size: 400px;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: var(--coral);
+    opacity: 0.07;
+    z-index: -1;
+  }
+</style>
+</head>
+<body>
+  <span class="watermark" aria-hidden="true">nód</span>
+  <div class="brand">n<span class="dot">ó</span>dicus</div>
+  <div>
+    <p class="eyebrow"><span class="tick"></span> Datos · IA · Automatización a medida</p>
+    <h1>IA para las empresas,<br>empresas para las <span class="spark">personas</span></h1>
+  </div>
+  <p class="foot">nodicus.com · Valencia, España</p>
+</body>
+</html>

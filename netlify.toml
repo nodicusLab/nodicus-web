@@ -4,3 +4,36 @@
 [build]
   publish = "."
   command = ""
+
+# El repo entero se publica tal cual, así que se ocultan las rutas que no son
+# parte de la web (herramientas, CI, configuración, README) para que no se
+# puedan rastrear ni indexar.
+[[redirects]]
+  from = "/tools/*"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/.github/*"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/README.md"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/.htmlvalidate.json"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/.htmlvalidateignore"
+  to = "/404"
+  status = 404
+  force = true
