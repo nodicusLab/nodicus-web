@@ -34,10 +34,13 @@ jobs:
       - name: Enlaces externos
         uses: lycheeverse/lychee-action@v2
         with:
-          # LinkedIn responde 999 a los bots; fonts.g* son preconnect, no páginas.
+          # Los enlaces internos los revisa qa_check.py (nodicus.com se excluye porque las
+          # páginas nuevas aún no existen en producción). LinkedIn responde 999 a los
+          # bots; fonts.g* son preconnect, no páginas.
           args: >-
             --no-progress
             --root-dir "${{ github.workspace }}/_site"
+            --exclude "^https://nodicus\.com"
             --exclude "linkedin\.com"
             --exclude "fonts\.googleapis\.com$"
             --exclude "fonts\.gstatic\.com"
