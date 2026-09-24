@@ -1,6 +1,54 @@
 {
+  "casos/codificacion-garantias-taller-camiones/index.html": {
+    "hash": "af17763221316c348f25ee3acc8c8db648f4e8383fd80cd8ba5a6515e6b6d16c",
+    "lastmod": "2026-09-24"
+  },
+  "casos/index.html": {
+    "hash": "1052b75d2b0d6e4e73e5c566102ed715680ce97f3770d5b2034e802f603e2a1d",
+    "lastmod": "2026-09-24"
+  },
+  "casos/informes-visitas-comerciales/index.html": {
+    "hash": "de07cfccf4c4d87b267fa6cafa5062be3a99984f373c948a1d66b0bfb52b50b7",
+    "lastmod": "2026-09-24"
+  },
+  "casos/migracion-aplicaciones-servidor-propio/index.html": {
+    "hash": "e2bc071a5e2c5120750a599bbab01e09ad2a763c0f03507a60829ba1c9d4e97b",
+    "lastmod": "2026-09-24"
+  },
+  "como-trabajamos/index.html": {
+    "hash": "992c598782c2dbd87545b7c20037c3e1feffe5b3fc5ce5cca1965fafa84ee63b",
+    "lastmod": "2026-09-24"
+  },
   "index.html": {
-    "hash": "23a197b790ea5012a3ecdaa44a7e07260e1f2bb431b3c4bf8106db8850d14149",
+    "hash": "26f4fb9d85b861b8f421e3cc318cd71e27720dee644820b6b3e4f7191e4a8333",
+    "lastmod": "2026-09-24"
+  },
+  "nosotros/index.html": {
+    "hash": "2e17934301cd1bcfc8bc1ff3d253e1d711aab4fc1e771d577b537ebe6d09267c",
+    "lastmod": "2026-09-24"
+  },
+  "servicios/datos-e-integraciones/index.html": {
+    "hash": "828b2ae3c3aa7345a8189bbc419164700e751a5dfea0295b3381c0b6ed474f09",
+    "lastmod": "2026-09-24"
+  },
+  "servicios/documentos-y-texto/index.html": {
+    "hash": "1a0e96b72961cc282e5246836be64890f203a5dc564beba58925605fc3d0ebb3",
+    "lastmod": "2026-09-24"
+  },
+  "servicios/index.html": {
+    "hash": "fb84b2e972f0d86113edef2ee1f8e601faae3b88903994fa30f7cc68a2400abb",
+    "lastmod": "2026-09-24"
+  },
+  "servicios/optimizacion/index.html": {
+    "hash": "0bc585e3feb13ec5f6df0298820a886c15554f435ae166beebfb430032d9da71",
+    "lastmod": "2026-09-24"
+  },
+  "servicios/prediccion/index.html": {
+    "hash": "6ca6df0beebd60288816cdffc0abc6e51e707381ccce1d55189a773530eea29d",
+    "lastmod": "2026-09-24"
+  },
+  "servicios/vision-por-computador/index.html": {
+    "hash": "9d3708ae8de8096c40b0af5b3db8ba0de20d96b6939bb4db14e2e9f1143f697b",
     "lastmod": "2026-09-24"
   }
 }

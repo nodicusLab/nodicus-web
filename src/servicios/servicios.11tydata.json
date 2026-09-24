@@ -1,0 +1,7 @@
+{
+  "layout": "page.njk",
+  "crumbs": [
+    { "name": "Inicio", "url": "/" },
+    { "name": "Servicios", "url": "/servicios/" }
+  ]
+}

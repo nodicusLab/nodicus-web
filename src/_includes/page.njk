@@ -1,0 +1,68 @@
+---
+layout: base.njk
+---
+{#- Plantilla de páginas interiores. Front matter:
+    h1, lead, eyebrow, crumbs [{name, url}], crumbName,
+    aside (HTML de la ficha lateral, opcional), cta (false para ocultar la franja final). -#}
+    <section class="page-hero">
+      <span class="hero-watermark" aria-hidden="true">nód</span>
+      <div class="shell">
+        {%- if crumbs %}
+        <nav class="crumbs" aria-label="Migas de pan">
+          {%- for c in crumbs %}
+          <a href="{{ c.url }}">{{ c.name }}</a><span class="sep" aria-hidden="true">/</span>
+          {%- endfor %}
+          <span aria-current="page">{{ crumbName or h1 }}</span>
+        </nav>
+        {%- endif %}
+        {%- if eyebrow %}
+        <p class="eyebrow"><span class="tick"></span> {{ eyebrow }}</p>
+        {%- endif %}
+        <h1>{{ h1 }}</h1>
+        {%- if lead %}
+        <p class="lead">{{ lead }}</p>
+        {%- endif %}
+      </div>
+    </section>
+
+    {%- if cards %}
+    <div class="shell">
+      <div class="cards">
+        {%- for c in cards %}
+        <a class="card" href="{{ c.url }}">
+          <span class="tag">{{ c.tag }}</span>
+          <h2>{{ c.title }}</h2>
+          <p>{{ c.text }}</p>
+          <span class="more">{{ c.more or "Leer más" }} <span aria-hidden="true">→</span></span>
+        </a>
+        {%- endfor %}
+      </div>
+    </div>
+    {%- endif %}
+
+    {%- if content | trim %}
+    <div class="shell">
+      <div class="page-body{% if not aside %} page-body--single{% endif %}">
+        <article class="prose">
+{{ content | safe }}
+        </article>
+        {%- if aside %}
+        <aside class="aside-card">
+{{ aside | safe }}
+        </aside>
+        {%- endif %}
+      </div>
+    </div>
+    {%- endif %}
+
+    {%- if cta !== false %}
+    <section class="section cta-band">
+      <div class="shell">
+        <div>
+          <h2>{{ ctaTitle or "¿Tienes un problema parecido?" }}</h2>
+          <p>{{ ctaText or "Cuéntanos cómo se hace hoy en tu empresa. La primera reunión y la propuesta de proyectos no tienen coste." }}</p>
+        </div>
+        <a href="/#contacto" class="btn btn--primary">Hablemos <span class="arr" aria-hidden="true">→</span></a>
+      </div>
+    </section>
+    {%- endif %}

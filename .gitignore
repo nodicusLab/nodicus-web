@@ -11,3 +11,6 @@ node_modules/
 
 # Python
 __pycache__/
+
+# Eleventy
+_site/

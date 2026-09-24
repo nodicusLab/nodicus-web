@@ -573,6 +573,83 @@ main { position: relative; z-index: 1; }
 .footer-bottom p { font-size: var(--step--1); color: var(--muted); }
 
 /* ============================================================
+   Páginas interiores (servicios, casos, cómo trabajamos, nosotros)
+   Mismos tokens y motivos que la home: tick, índice, fichas.
+   ============================================================ */
+.page-hero { padding-top: clamp(8rem, 16vh, 10.5rem); padding-bottom: clamp(2.5rem, 6vw, 4rem); position: relative; overflow: hidden; }
+.page-hero .hero-watermark { font-size: clamp(8rem, 22vw, 18rem); }
+.crumbs { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5em; font-size: var(--step--1); color: var(--muted); margin-bottom: var(--sp-3); }
+.crumbs a { color: var(--slate); }
+.crumbs a:hover { color: var(--coral-deep); }
+.crumbs .sep { color: var(--line-strong); }
+.page-hero h1 { font-size: var(--step-5); letter-spacing: -0.015em; max-width: 20ch; margin-block: var(--sp-2) var(--sp-3); text-wrap: balance; }
+.page-hero .lead { font-size: var(--step-1); color: var(--ink-soft); font-weight: 300; max-width: 54ch; }
+
+.page-body { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 19rem); gap: clamp(2rem, 5vw, 4.5rem); align-items: start; padding-bottom: clamp(3.5rem, 8vw, 6rem); }
+.page-body--single { grid-template-columns: minmax(0, 1fr); }
+
+.prose { max-width: 68ch; }
+.prose > :first-child { margin-top: 0; }
+.prose h2 { font-size: var(--step-3); letter-spacing: -0.01em; margin: var(--sp-5) 0 var(--sp-2); }
+.prose h3 { font-size: var(--step-2); margin: var(--sp-4) 0 var(--sp-1); }
+.prose p { color: var(--ink-soft); margin-bottom: var(--sp-2); }
+.prose strong { color: var(--ink); font-weight: 600; }
+.prose a { color: var(--slate-deep); font-weight: 500; border-bottom: 1px solid var(--line-strong); }
+.prose a:hover { color: var(--coral-deep); border-color: var(--coral); }
+.prose ul { display: grid; gap: 0.55rem; margin: 0 0 var(--sp-3); }
+.prose ul li { position: relative; padding-left: 1.2em; color: var(--ink-soft); }
+.prose ul li::before { content: ""; position: absolute; left: 0.1em; top: 0.45em; width: 3px; height: 0.8em; background: var(--coral); transform: skewX(-22deg); border-radius: 2px; }
+.prose ol { counter-reset: paso; display: grid; gap: var(--sp-2); margin: 0 0 var(--sp-3); list-style: none; }
+.prose ol li { counter-increment: paso; display: grid; grid-template-columns: 2.2rem minmax(0, 1fr); color: var(--ink-soft); }
+.prose ol li::before { content: counter(paso, decimal-leading-zero); font-size: var(--step--1); font-weight: 600; color: var(--coral-deep); padding-top: 0.2em; font-variant-numeric: tabular-nums; }
+.prose blockquote { font-family: var(--font-serif); font-style: italic; font-size: var(--step-1); color: var(--slate-deep); border-left: 3px solid var(--coral); padding-left: var(--sp-2); margin: var(--sp-3) 0; }
+
+.prose table { display: block; overflow-x: auto; width: 100%; border-collapse: collapse; margin: var(--sp-2) 0 var(--sp-3); font-size: var(--step--1); }
+.prose th { text-align: left; font-weight: 600; color: var(--slate); letter-spacing: 0.04em; border-bottom: 1px solid var(--line-strong); padding: 0.6rem 0.8rem 0.6rem 0; }
+.prose td { color: var(--ink-soft); border-bottom: 1px solid var(--line); padding: 0.6rem 0.8rem 0.6rem 0; vertical-align: top; }
+.prose td:last-child { color: var(--slate-deep); font-weight: 600; }
+
+.aside-card { position: sticky; top: 6.5rem; display: grid; gap: var(--sp-3); background: var(--paper); border: 1px solid var(--line); border-radius: var(--r-lg); padding: clamp(1.4rem, 3vw, 2rem); box-shadow: var(--shadow-sm); }
+.aside-card .eyebrow { margin-bottom: -0.5rem; }
+.aside-card p { font-size: var(--step--1); color: var(--ink-soft); }
+.aside-card .case-metrics { flex-direction: column; gap: var(--sp-2); }
+.aside-card .btn { justify-content: center; }
+
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr)); gap: clamp(1.25rem, 3vw, 2rem); padding-bottom: clamp(3.5rem, 8vw, 6rem); }
+.card { display: grid; gap: var(--sp-2); align-content: start; background: var(--paper); border: 1px solid var(--line); border-radius: var(--r-lg); padding: clamp(1.4rem, 3vw, 2rem); box-shadow: var(--shadow-sm); transition: box-shadow .4s ease, transform .4s ease, border-color .4s ease; }
+.card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); border-color: var(--line-strong); }
+.card .tag { font-size: var(--step--1); letter-spacing: 0.14em; text-transform: uppercase; color: var(--slate); font-weight: 600; }
+.card h2, .card h3 { font-size: var(--step-2); color: var(--display-color); letter-spacing: -0.01em; }
+.card p { color: var(--ink-soft); font-size: var(--step-0); }
+.card .more { color: var(--slate-deep); font-weight: 600; font-size: var(--step--1); display: inline-flex; gap: 0.5em; }
+.card:hover .more { color: var(--coral-deep); }
+
+.cta-band { background: var(--bg-alt); padding-block: clamp(3rem, 7vw, 5rem); }
+.cta-band .shell { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--sp-3); }
+.cta-band h2 { font-size: var(--step-3); max-width: 24ch; }
+.cta-band p { color: var(--ink-soft); max-width: 48ch; margin-top: var(--sp-1); }
+
+/* Enlaces dentro de las fichas de la home */
+.svc li a { border-bottom: 1px solid var(--line-strong); transition: color .25s ease, border-color .25s ease; }
+.svc li a:hover { color: var(--coral-deep); border-color: var(--coral); }
+.case-link { margin-top: var(--sp-3); }
+.section-more { margin-top: clamp(1.75rem, 4vw, 2.5rem); }
+
+/* Selector del formulario, con el mismo aspecto que los campos */
+.field select {
+  width: 100%; font-family: var(--font-sans); font-size: var(--step-0); color: var(--ink);
+  padding: 0.8rem 0.9rem; background: var(--bg); border: 1px solid var(--line);
+  border-radius: var(--r-sm); transition: border-color .25s ease, box-shadow .25s ease, background-color .25s ease;
+}
+.field label .optional { font-weight: 400; color: var(--muted); }
+.field select:focus { outline: none; border-color: var(--slate); background: var(--paper); box-shadow: 0 0 0 3px color-mix(in srgb, var(--slate) 14%, transparent); }
+
+@media (max-width: 940px) {
+  .page-body { grid-template-columns: 1fr; }
+  .aside-card { position: static; }
+}
+
+/* ============================================================
    Reveal animaciones (sutil)
    ============================================================ */
 .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1); }

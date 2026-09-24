@@ -1,0 +1,13 @@
+{
+  "name": "nodicus-web",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "eleventy",
+    "serve": "eleventy --serve",
+    "check": "eleventy && python tools/build_sitemap.py --check && python tools/qa_check.py && python tools/lint_copy.py"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "3.1.6"
+  }
+}

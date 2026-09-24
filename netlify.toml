@@ -1,39 +1,10 @@
 # Configuración de despliegue en Netlify.
-# Sitio estático (HTML/CSS/JS) servido directamente desde la raíz del repo.
-# No requiere paso de build.
+# Las páginas se generan con Eleventy (src/ -> _site/) y se publica _site/.
+# Solo llega a la web lo que genera el build: tools/, .github/, src/ y el
+# README no se publican.
 [build]
-  publish = "."
-  command = ""
+  command = "npm run build"
+  publish = "_site"
 
-# El repo entero se publica tal cual, así que se ocultan las rutas que no son
-# parte de la web (herramientas, CI, configuración, README) para que no se
-# puedan rastrear ni indexar.
-[[redirects]]
-  from = "/tools/*"
-  to = "/404"
-  status = 404
-  force = true
-
-[[redirects]]
-  from = "/.github/*"
-  to = "/404"
-  status = 404
-  force = true
-
-[[redirects]]
-  from = "/README.md"
-  to = "/404"
-  status = 404
-  force = true
-
-[[redirects]]
-  from = "/.htmlvalidate.json"
-  to = "/404"
-  status = 404
-  force = true
-
-[[redirects]]
-  from = "/.htmlvalidateignore"
-  to = "/404"
-  status = 404
-  force = true
+[build.environment]
+  NODE_VERSION = "22"
