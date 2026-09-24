@@ -62,7 +62,7 @@
 
   <!-- Datos estructurados (schema.org) -->
   <script type="application/ld+json">
-  {{ { "@context": "https://schema.org", "@graph": schemaOrg.base.concat(schemaExtra or []) } | dump(2) | safe }}
+  {{ { "@context": "https://schema.org", "@graph": schemaOrg.base.concat(schemaPage or [], schemaExtra or []) } | dump(2) | safe }}
   </script>
 </head>
 
@@ -117,10 +117,18 @@
         <div class="footer-cols">
           <div class="footer-col">
             <h4>Navegar</h4>
-            <a href="{{ homeHref }}#filosofia">Filosofía</a>
-            <a href="{{ homeHref }}#servicios">Servicios</a>
-            <a href="{{ homeHref }}#proyectos">Proyectos</a>
-            <a href="{{ homeHref }}#nosotros">Nosotros</a>
+            <a href="/servicios/">Servicios</a>
+            <a href="/casos/">Casos</a>
+            <a href="/como-trabajamos/">Cómo trabajamos</a>
+            <a href="/nosotros/">Nosotros</a>
+          </div>
+          <div class="footer-col">
+            <h4>Servicios</h4>
+            <a href="/servicios/documentos-y-texto/">Documentos y texto</a>
+            <a href="/servicios/vision-por-computador/">Visión por computador</a>
+            <a href="/servicios/optimizacion/">Optimización</a>
+            <a href="/servicios/prediccion/">Predicción</a>
+            <a href="/servicios/datos-e-integraciones/">Datos e integraciones</a>
           </div>
           <div class="footer-col">
             <h4>Contacto</h4>

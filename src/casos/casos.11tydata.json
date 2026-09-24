@@ -1,0 +1,9 @@
+{
+  "layout": "page.njk",
+  "articleType": "Article",
+  "ogType": "article",
+  "crumbs": [
+    { "name": "Inicio", "url": "/" },
+    { "name": "Casos", "url": "/casos/" }
+  ]
+}
