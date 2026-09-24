@@ -1,4 +1,25 @@
+# nódicus: el sitio es público y queremos que lo lean tanto los buscadores
+# como los asistentes de IA (búsqueda y entrenamiento). Se nombran los bots
+# de IA de forma explícita para que la decisión quede documentada.
+
 User-agent: *
+Allow: /
+
+# Búsqueda y respuestas con IA
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+Allow: /
+
+# Entrenamiento de modelos
+User-agent: GPTBot
+User-agent: ClaudeBot
+User-agent: Google-Extended
+User-agent: Applebot-Extended
+User-agent: CCBot
 Allow: /
 
 Sitemap: https://nodicus.com/sitemap.xml

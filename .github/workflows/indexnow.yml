@@ -1,0 +1,32 @@
+# Tras cada publicación, avisa por IndexNow (Bing, Yandex, Seznam...) de las
+# páginas cuyo lastmod ha cambiado en el sitemap. Google no usa IndexNow.
+name: IndexNow
+
+on:
+  push:
+    branches: [main]
+    paths: [sitemap.xml]
+  workflow_dispatch:
+    inputs:
+      all:
+        description: "Enviar todas las URLs del sitemap"
+        type: boolean
+        default: false
+
+jobs:
+  indexnow:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Enviar URLs cambiadas
+        run: |
+          if [ "${{ inputs.all }}" = "true" ]; then
+            python tools/indexnow.py --all --wait-live
+          else
+            python tools/indexnow.py --since "${{ github.event.before }}" --wait-live
+          fi
